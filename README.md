@@ -1,4 +1,4 @@
-#Arbitrage Detector
+# Arbitrage Detector
 
 ## Motivation
 Currency arbitrage occurs when inconsistencies in exchange rates create an opportunity to make a profit through a sequence of currency exchanges. This project models exchange rates as a graph and uses the Bellman-Ford algorithm to detect such opportunities.
@@ -19,6 +19,7 @@ A C++ application that detects currency arbitrage opportunities using the Bellma
 
 ## Project Structure
 
+```text
 arbitrage-detector/
 │
 ├── data/
@@ -34,6 +35,7 @@ arbitrage-detector/
 │   └── main.cpp
 │
 └── README.md
+```
 
 ## How It Works
 Exchange rates are represented as a directed graph where:
@@ -41,7 +43,7 @@ Exchange rates are represented as a directed graph where:
 - Each exchange rate is a directed edge.
 
 Since exchange rates multiply along a trading cycle, the program converts each exchange rate using:
-weight= - log(exchange_rate)
+`weight = -log(exchange_rate)`
 
 This transforms multiplication into addition.
 A profitable arbitrage opportunity becomes a negative-weight cycle, which is detected using the Bellman-Ford algorithm.
@@ -54,17 +56,22 @@ g++ src/main.cpp src/Graph.cpp -o arbitrage.exe
 .\arbitrage.exe
 ```
 ## Example Input
+
 `data/rates.txt`
 
+```text
 USD EUR 0.91
 EUR GBP 0.86
 GBP USD 1.35
 USD INR 83.50
 INR JPY 1.72
 JPY USD 0.0068
+```
 
 ## Example Output
-===Arbitrage Detector===
+
+```text
+=== Arbitrage Detector ===
 EUR -> GBP (0.86)
 GBP -> USD (1.35)
 INR -> JPY (1.72)
@@ -76,6 +83,7 @@ Cycle: GBP -> USD -> EUR -> GBP
 
 Profit Multiplier: 1.06
 Profit Percentage: 5.65%
+```
 
 ## Technologies Used
 - C++
